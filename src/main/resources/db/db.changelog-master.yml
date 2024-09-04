@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - include:
+      file: db/20240903.running_tracker_service_initial_db_creation.yml

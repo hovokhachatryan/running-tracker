@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost/postgres
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+
+  liquibase:
+    enabled: true
+    drop-first: false
+    change-log: classpath:db/db.changelog-master.yml
+    default-schema: public
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        formatSql: true

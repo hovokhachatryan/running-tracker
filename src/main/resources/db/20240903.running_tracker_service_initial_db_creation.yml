@@ -1,0 +1,94 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-users-runs-tables
+      author: hovhannes_khachatryan
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birth_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sex
+                  type: VARCHAR(6)
+                  constraints:
+                    nullable: false
+
+
+        - createTable:
+            tableName: runs
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_latitude
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_longitude
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_datetime
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: finish_latitude
+                  type: DOUBLE
+              - column:
+                  name: finish_longitude
+                  type: DOUBLE
+              - column:
+                  name: finish_datetime
+                  type: TIMESTAMP
+              - column:
+                  name: distance
+                  type: DOUBLE
+              - column:
+                  name: distance_unit
+                  type: VARCHAR(20)
+              - column:
+                  name: average_speed
+                  type: DOUBLE
+              - column:
+                  name: average_speed_unit
+                  type: VARCHAR(20)
+
+
+        - addForeignKeyConstraint:
+            baseTableName: runs
+            baseColumnNames: user_id
+            constraintName: fk_runs_users
+            referencedTableName: users
+            referencedColumnNames: id
